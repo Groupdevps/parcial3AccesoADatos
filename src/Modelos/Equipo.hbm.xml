@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/06/2023 02:41:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Equipo" table="equipo" catalog="parcial3" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="200" not-null="true" />
+        </property>
+        <property name="pais" type="string">
+            <column name="pais" length="200" not-null="true" />
+        </property>
+        <property name="codigo" type="int">
+            <column name="codigo" not-null="true" />
+        </property>
+        <property name="puntos" type="int">
+            <column name="puntos" not-null="true" />
+        </property>
+        <property name="partidosGanados" type="int">
+            <column name="partidos_ganados" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
