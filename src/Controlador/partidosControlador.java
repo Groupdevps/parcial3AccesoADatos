@@ -39,4 +39,9 @@ public class partidosControlador {
        
        return pts;
     }
+    
+    public int updatePartido(int id){
+       int filAfc= ptDAO.updatePartido(id);
+       return filAfc;
+    }
 }

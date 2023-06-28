@@ -27,8 +27,9 @@ public class equiposDAO {
         session.save(eq);
 
         tx.commit();
-        
+        System.out.println("dao");
         session.close();
+        
     }
     
     public int deleteEquipo(int id){

@@ -50,4 +50,16 @@ public class partidoDAO {
         session.close();
         return pt;
     }
+    
+    public int updatePartido(int id){
+        int filasAfectadas = 0;
+        SessionFactory sessFact = NewHibernateUtil.getSessionFactory();
+        Session session = sessFact.openSession();      
+        Transaction tx = session.beginTransaction();       
+	String query = "update FROM partido SET equipo_1=?, equipo_2=?, goles_equipo_1=?, goles_equipo_2=?, tarjetas_rojas_equipo_1=?, tarjetas_rojas_equipo_2=?, tarjetas_amarillas_equipo_1=?, tarjetas_amarillas_equipo_2=? WHERE id = ?";      
+        filasAfectadas = session.createSQLQuery(query).setInteger(0,id).executeUpdate();         
+        tx.commit();
+        session.close();
+        return filasAfectadas;
+    }
 }

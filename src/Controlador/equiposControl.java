@@ -22,7 +22,9 @@ public class equiposControl {
     
     public void addEquipo(int id, String nombre, String pais, int codigo, int puntos, int partidosGanados){
         Equipo eq = new Equipo(id, nombre, pais, codigo, puntos, partidosGanados);
+        System.out.println("Controlador");
         eqDAO.addEquipo(eq);
+        
     }
     
     public int deleteEquipo(int id){
