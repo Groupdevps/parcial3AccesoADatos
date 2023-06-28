@@ -12,7 +12,8 @@ import java.awt.BorderLayout;
  * @author Dan
  */
 public class menu extends javax.swing.JFrame {
-
+    
+    
     /**
      * Creates new form menu
      */
@@ -37,10 +38,13 @@ public class menu extends javax.swing.JFrame {
         editarEquipo = new javax.swing.JMenuItem();
         eliminarEquipo = new javax.swing.JMenuItem();
         listarEquipo = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        crearJugador = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,17 +115,41 @@ public class menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Jugadores");
+        crearJugador.setText("Jugadores");
+        crearJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearJugadorActionPerformed(evt);
+            }
+        });
 
         jMenuItem5.setText("Crear Jugador");
-        jMenu2.add(jMenuItem5);
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        crearJugador.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(crearJugador);
 
         jMenu3.setText("Partidos");
 
-        jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.setText("Ingreso Goles");
         jMenu3.add(jMenuItem6);
+
+        jMenuItem1.setText("Ingreso Tarjetas");
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Listar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Buscar");
+        jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
 
@@ -179,6 +207,20 @@ public class menu extends javax.swing.JFrame {
         showPanel(p4);
     }//GEN-LAST:event_listarEquipoActionPerformed
 
+    private void crearJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearJugadorActionPerformed
+        // TODO add your handling code here:
+        crearJugador p5 = new crearJugador();
+           showPanel(p5);
+    }//GEN-LAST:event_crearJugadorActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,12 +259,15 @@ public class menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JMenuItem crearEquipo;
+    private javax.swing.JMenu crearJugador;
     private javax.swing.JMenuItem editarEquipo;
     private javax.swing.JMenuItem eliminarEquipo;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;

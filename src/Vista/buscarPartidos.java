@@ -1,19 +1,20 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package Vistas;
+package Vista;
 
 /**
  *
  * @author Dan
  */
-public class ingresoTarjeta extends javax.swing.JPanel {
+public class buscarPartidos extends javax.swing.JPanel {
 
     /**
-     * Creates new form ingresoTarjeta
+     * Creates new form buscarPartidos
      */
-    public ingresoTarjeta() {
+    public buscarPartidos() {
         initComponents();
     }
 
@@ -27,6 +28,7 @@ public class ingresoTarjeta extends javax.swing.JPanel {
     private void initComponents() {
 
         setPreferredSize(new java.awt.Dimension(700, 350));
+        setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
