@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Dan
@@ -27,12 +30,13 @@ public class menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        content = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        crearEquipo = new javax.swing.JMenuItem();
+        editarEquipo = new javax.swing.JMenuItem();
+        eliminarEquipo = new javax.swing.JMenuItem();
+        listarEquipo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -40,40 +44,70 @@ public class menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 789, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Equipos");
-
-        jMenuItem1.setText("Crear Equipo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Editar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        crearEquipo.setText("Crear");
+        crearEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                crearEquipoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(crearEquipo);
 
-        jMenuItem3.setText("Eliminar");
-        jMenu1.add(jMenuItem3);
+        editarEquipo.setText("Editar");
+        editarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarEquipoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(editarEquipo);
 
-        jMenuItem4.setText("Listar");
-        jMenu1.add(jMenuItem4);
+        eliminarEquipo.setText("Eliminar");
+        eliminarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarEquipoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(eliminarEquipo);
+
+        listarEquipo.setText("Listar");
+        listarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarEquipoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(listarEquipo);
 
         jMenuBar1.add(jMenu1);
 
@@ -106,15 +140,44 @@ public class menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+    
+    private void showPanel(JPanel p){
+        p.setSize(700, 350);
+        p.setLocation(0,0);
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        content.removeAll();
+        content.add(p, BoderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }
+    
+    private void crearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEquipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        crearEquipo p = new crearEquipo();
+        showPanel(p);
+    }//GEN-LAST:event_crearEquipoActionPerformed
+
+    private void editarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEquipoActionPerformed
+        // TODO add your handling code here:
+        editarEquipo p2 = new editarEquipo();
+        showPanel(p2);
+    }//GEN-LAST:event_editarEquipoActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void eliminarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEquipoActionPerformed
+        // TODO add your handling code here:
+        eliminarEquipo p3 = new eliminarEquipo();
+        showPanel(p3);
+    }//GEN-LAST:event_eliminarEquipoActionPerformed
+
+    private void listarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarEquipoActionPerformed
+        // TODO add your handling code here:
+        listarEquipo p4 = new listarEquipo();
+        showPanel(p4);
+    }//GEN-LAST:event_listarEquipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,16 +215,17 @@ public class menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel content;
+    private javax.swing.JMenuItem crearEquipo;
+    private javax.swing.JMenuItem editarEquipo;
+    private javax.swing.JMenuItem eliminarEquipo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem listarEquipo;
     // End of variables declaration//GEN-END:variables
 }

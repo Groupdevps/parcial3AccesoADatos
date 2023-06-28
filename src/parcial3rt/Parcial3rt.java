@@ -5,6 +5,8 @@
  */
 package parcial3rt;
 
+import Vista.menu;
+
 /**
  *
  * @author chaya
@@ -16,6 +18,8 @@ public class Parcial3rt {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        menu Menu = new menu();
+        Menu.setVisible(true);
     }
     
 }
