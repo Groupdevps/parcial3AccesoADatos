@@ -6,6 +6,7 @@ package Vista;
 
 import Controlador.equiposControl;
 import Modelos.Equipo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +34,7 @@ public class crearEquipo extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        crearBoton = new javax.swing.JButton();
         nombre = new javax.swing.JTextField();
         codigo = new javax.swing.JTextField();
         pais = new javax.swing.JTextField();
@@ -49,16 +50,22 @@ public class crearEquipo extends javax.swing.JPanel {
 
         jLabel4.setText("Codigo");
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        crearBoton.setText("Crear");
+        crearBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                crearBotonActionPerformed(evt);
             }
         });
 
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
+            }
+        });
+
+        codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                codigoKeyTyped(evt);
             }
         });
 
@@ -90,7 +97,7 @@ public class crearEquipo extends javax.swing.JPanel {
                 .addGap(102, 102, 102))
             .addGroup(layout.createSequentialGroup()
                 .addGap(269, 269, 269)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(crearBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -113,22 +120,31 @@ public class crearEquipo extends javax.swing.JPanel {
                     .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(42, 42, 42)
-                .addComponent(jButton1)
+                .addComponent(crearBoton)
                 .addContainerGap(140, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void crearBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearBotonActionPerformed
         // TODO add your handling code here:
         // Crear equipo
-//        Equipo team = new Equipo();
-//        team.setNombre(nombre.getText());
-//        team.setCodigo(Integer.parseInt(codigo.getText()));
-//        team.setNombre(pais.getText());
+        try {
+            equipoController = new equiposControl();            
+            int code = this.equipoController.addEquipoo(0, this.nombre.getText(), this.pais.getText(), Integer.parseInt(this.codigo.getText()), 0, 0);
+            if (code == 0){
+                JOptionPane.showMessageDialog(null, "Equipo creado!!");
+                this.nombre.setText("");
+                this.pais.setText("");
+                this.codigo.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error creado equipo!");
+            }
+        }catch(Exception e){
+            System.out.println("Error " + e);
+        }
         
-        this.equipoController.addEquipo(0, this.nombre.getText(), this.pais.getText(), Integer.parseInt(this.codigo.getText()), 0, 0);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_crearBotonActionPerformed
 
     private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
@@ -138,10 +154,26 @@ public class crearEquipo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_paisActionPerformed
 
+    private void codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (this.codigo.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_codigoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codigo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton crearBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

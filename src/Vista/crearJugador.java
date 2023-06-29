@@ -4,17 +4,29 @@
  */
 package Vista;
 
+import Controlador.equiposControl;
+import Controlador.jugadoresControlador;
+import Modelos.Equipo;
+import Modelos.Jugador;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dan
  */
 public class crearJugador extends javax.swing.JPanel {
-
+    List <Equipo> equipos;
+    Equipo team;
+    Jugador player;
     /**
      * Creates new form crearJugador
      */
     public crearJugador() {
         initComponents();
+        this.setSize(780, 350);
+        equipo.addItem("seleccionar");
+        this.cargarDatos();
     }
 
     /**
@@ -32,8 +44,8 @@ public class crearJugador extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         equipo = new java.awt.Choice();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        cedula = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(700, 350));
 
@@ -46,7 +58,29 @@ public class crearJugador extends javax.swing.JPanel {
 
         jLabel4.setText("Equipo");
 
+        equipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                equipoItemStateChanged(evt);
+            }
+        });
+        equipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                equipoKeyTyped(evt);
+            }
+        });
+
         jButton1.setText("Crear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cedulaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,12 +102,12 @@ public class crearJugador extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(nombre)
                             .addComponent(equipo, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)))
                 .addGap(32, 32, 32)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
@@ -85,8 +119,8 @@ public class crearJugador extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -97,15 +131,77 @@ public class crearJugador extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // Crear Jugador
+         try {
+            jugadoresControlador jugadorControll = new jugadoresControlador();            
+            
+            int code = jugadorControll.addJugador(0, this.nombre.getText(), this.cedula.getText(), this.team.getNombre(), 0, 0 , 0);
+            if (code == 0){
+                JOptionPane.showMessageDialog(null, "Jugador agregado !!");
+                this.nombre.setText("");
+                this.cedula.setText("");
+//                this.equipo.setText(1);
+//                this.codigo.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error Creando Jugador!");
+            }
+        }catch(Exception e){
+            System.out.println("Error vista crear jugador : " + e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void equipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_equipoItemStateChanged
+        // TODO add your handling code here:
+        String[] parts = evt.getItem().toString().split("-");
+        if (parts.length > 0) {            
+            for(Equipo eq:equipos){
+                if (eq.getId()  == Integer.parseInt(parts[0])) {
+                    team = eq;                   
+                }
+            }
+        }
+    }//GEN-LAST:event_equipoItemStateChanged
+
+    private void equipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipoKeyTyped
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_equipoKeyTyped
+
+    private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+        if (this.cedula.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_cedulaKeyTyped
+
+    public void cargarDatos(){
+        equiposControl equipoController = new equiposControl();   
+        equipos = equipoController.listEquipo();
+        for(Equipo eq:equipos){
+            equipo.addItem(eq.getId() + "- " + eq.getNombre());
+        }
+
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cedula;
     private java.awt.Choice equipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

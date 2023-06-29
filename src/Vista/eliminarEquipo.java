@@ -4,12 +4,19 @@
  */
 package Vista;
 
+import Controlador.equiposControl;
+import Modelos.Equipo;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Dan
  */
 public class eliminarEquipo extends javax.swing.JPanel {
-
+    List <Equipo> equipos;
+    Equipo team;
     /**
      * Creates new form eliminarJugador
      */
@@ -18,7 +25,7 @@ public class eliminarEquipo extends javax.swing.JPanel {
         
         equipo.addItem("seleccionar");
         equipo.addItem("test");
-
+        this.cargarDatos();
     }
 
     /**
@@ -37,11 +44,23 @@ public class eliminarEquipo extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(700, 350));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("ELIMINAR EQUIPO");
 
         jLabel2.setText("Equipo");
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        equipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                equipoItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,25 +76,63 @@ public class eliminarEquipo extends javax.swing.JPanel {
                             .addComponent(jButton1)
                             .addComponent(equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(286, Short.MAX_VALUE))
+                        .addGap(187, 187, 187)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(equipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77)
                 .addComponent(jButton1)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void equipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_equipoItemStateChanged
+        // TODO add your handling code here:
+        System.out.println("preciono "+ evt.getItem());
+        String[] parts = evt.getItem().toString().split("-");
+        if (parts.length > 0) {            
+            for(Equipo eq:equipos){
+                if (eq.getId()  == Integer.parseInt(parts[0])) {
+                    team = eq;                    
+                }
+            }
+        }
+    }//GEN-LAST:event_equipoItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         try {
+            equiposControl equipoController = new equiposControl();                        
+            boolean code = equipoController.deleteEquipo(team);
+            if (code){
+                JOptionPane.showMessageDialog(null, "Equipo Eliminado!!");              
+                this.equipo.select("Seleccionar");
+//                this.codigo.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error Eliminando equipo!");
+            }
+        }catch(Exception e){
+            System.out.println("Error " + e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    public void cargarDatos(){
+        equiposControl equipoController = new equiposControl();   
+        equipos = equipoController.listEquipo();
+        for(Equipo eq:equipos){
+            equipo.addItem(eq.getId() + "- " + eq.getNombre());
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Choice equipo;

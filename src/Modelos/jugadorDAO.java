@@ -15,19 +15,19 @@ import org.hibernate.Transaction;
  */
 public class jugadorDAO {
     
-    public void addJugador (Jugador jg){
-         
-        SessionFactory sesion = NewHibernateUtil.getSessionFactory();
-        
-        Session session = sesion.openSession();
-        
-        Transaction tx = session.beginTransaction();
-        
-        session.save(jg);
-
-        tx.commit();
-        
-        session.close();
+    public int addJugador (Jugador jg){
+        int val = 1;
+        try {
+            SessionFactory sesion = NewHibernateUtil.getSessionFactory();        
+            Session session = sesion.openSession();        
+            Transaction tx = session.beginTransaction();        
+            val = (int) session.save(jg);
+            tx.commit();        
+            session.close();
+        }catch (Exception error){
+            System.out.println("Error Creando equipo "+ error);
+        }
+        return val;
     }
     
     public int deleteJugador(int id){

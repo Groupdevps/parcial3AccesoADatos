@@ -4,18 +4,27 @@
  */
 package Vista;
 
+import Controlador.equiposControl;
+import Modelos.Equipo;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dan
  */
 public class editarEquipo extends javax.swing.JPanel {
-
+    List <Equipo> equipos;
+    Equipo team;
     /**
      * Creates new form editarJugador
      */
     public editarEquipo() {
         initComponents();
-        this.setSize(789, 378);
+        this.setSize(780, 350);
+        equipoSelect.addItem("seleccionar");
+        this.cargarDatos();
+
     }
 
     /**
@@ -33,6 +42,8 @@ public class editarEquipo extends javax.swing.JPanel {
         nombre = new javax.swing.JTextField();
         pais = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        equipoSelect = new java.awt.Choice();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("EDITAR EQUIPO");
@@ -54,6 +65,22 @@ public class editarEquipo extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setText("Equipo");
+
+        equipoSelect.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                equipoSelectItemStateChanged(evt);
+            }
+        });
+        equipoSelect.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                equipoSelectKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                equipoSelectKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,11 +91,13 @@ public class editarEquipo extends javax.swing.JPanel {
                         .addGap(140, 140, 140)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                            .addComponent(pais)))
+                            .addComponent(pais)
+                            .addComponent(equipoSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(257, 257, 257)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -82,11 +111,15 @@ public class editarEquipo extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(equipoSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -102,14 +135,64 @@ public class editarEquipo extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         try {
+            equiposControl equipoController = new equiposControl();            
+            team.setNombre(this.nombre.getText());
+            team.setPais(this.pais.getText());
+            int code = equipoController.updateEquipo(team);
+            if (code == 0){
+                JOptionPane.showMessageDialog(null, "Equipo actualizado !!");
+                this.nombre.setText("");
+                this.pais.setText("");
+                this.equipoSelect.select("Seleccionar");
+//                this.codigo.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error Actualizando equipo!");
+            }
+        }catch(Exception e){
+            System.out.println("Error " + e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void equipoSelectKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipoSelectKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_equipoSelectKeyPressed
+
+    private void equipoSelectKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipoSelectKeyTyped
+        // TODO add your handling code here:
+        System.out.println("preciono "+ evt);
+    }//GEN-LAST:event_equipoSelectKeyTyped
+
+    private void equipoSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_equipoSelectItemStateChanged
+        // TODO add your handling code here:
+        String[] parts = evt.getItem().toString().split("-");
+        if (parts.length > 0) {            
+            for(Equipo eq:equipos){
+                if (eq.getId()  == Integer.parseInt(parts[0])) {
+                    team = eq;
+                    this.nombre.setText(eq.getNombre());
+                    this.pais.setText(eq.getPais());
+                }
+            }
+        }
+    }//GEN-LAST:event_equipoSelectItemStateChanged
+    public void cargarDatos(){
+        equiposControl equipoController = new equiposControl();   
+        equipos = equipoController.listEquipo();
+        for(Equipo eq:equipos){
+            equipoSelect.addItem(eq.getId() + "- " + eq.getNombre());
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Choice equipoSelect;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField pais;
     // End of variables declaration//GEN-END:variables

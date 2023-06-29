@@ -17,17 +17,16 @@ public class Jugador  implements java.io.Serializable {
      private int numeroRojas;
      private int numeroGoles;
 
-    public Jugador() {
-    }
+   
 
-    public Jugador(int id, String nombre, String cedula, String equipo, int numeroAmarillas, int numeroRojas, int numeroGoles) {
-       this.id = id;
-       this.nombre = nombre;
-       this.cedula = cedula;
-       this.equipo = equipo;
-       this.numeroAmarillas = numeroAmarillas;
-       this.numeroRojas = numeroRojas;
-       this.numeroGoles = numeroGoles;
+    public Jugador() { // int id, String nombre, String cedula, String equipo, int numeroAmarillas, int numeroRojas, int numeroGoles
+//       this.id = id;
+//       this.nombre = nombre;
+//       this.cedula = cedula;
+//       this.equipo = equipo;
+//       this.numeroAmarillas = numeroAmarillas;
+//       this.numeroRojas = numeroRojas;
+//       this.numeroGoles = numeroGoles;
     }
    
     public int getId() {

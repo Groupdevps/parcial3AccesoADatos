@@ -34,7 +34,7 @@ public class menu extends javax.swing.JFrame {
         content = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        crearEquipo = new javax.swing.JMenuItem();
+        crearEquipo1 = new javax.swing.JMenuItem();
         editarEquipo = new javax.swing.JMenuItem();
         eliminarEquipo = new javax.swing.JMenuItem();
         listarEquipo = new javax.swing.JMenuItem();
@@ -81,13 +81,13 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        crearEquipo.setText("Crear");
-        crearEquipo.addActionListener(new java.awt.event.ActionListener() {
+        crearEquipo1.setText("Crear");
+        crearEquipo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearEquipoActionPerformed(evt);
+                crearEquipo1ActionPerformed(evt);
             }
         });
-        jMenu1.add(crearEquipo);
+        jMenu1.add(crearEquipo1);
 
         editarEquipo.setText("Editar");
         editarEquipo.addActionListener(new java.awt.event.ActionListener() {
@@ -179,11 +179,11 @@ public class menu extends javax.swing.JFrame {
         content.repaint();
     }
     
-    private void crearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEquipoActionPerformed
+    private void crearEquipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEquipo1ActionPerformed
         // TODO add your handling code here:
         crearEquipo p = new crearEquipo();
         showPanel(p);
-    }//GEN-LAST:event_crearEquipoActionPerformed
+    }//GEN-LAST:event_crearEquipo1ActionPerformed
 
     private void editarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEquipoActionPerformed
         // TODO add your handling code here:
@@ -210,11 +210,13 @@ public class menu extends javax.swing.JFrame {
     private void crearJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearJugadorActionPerformed
         // TODO add your handling code here:
         crearJugador p5 = new crearJugador();
-           showPanel(p5);
+        showPanel(p5);
     }//GEN-LAST:event_crearJugadorActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        crearJugador p6 = new crearJugador();
+        showPanel(p6);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -258,7 +260,7 @@ public class menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
-    private javax.swing.JMenuItem crearEquipo;
+    private javax.swing.JMenuItem crearEquipo1;
     private javax.swing.JMenu crearJugador;
     private javax.swing.JMenuItem editarEquipo;
     private javax.swing.JMenuItem eliminarEquipo;

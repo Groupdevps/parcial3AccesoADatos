@@ -15,13 +15,22 @@ import java.util.List;
 public class jugadoresControlador {
     jugadorDAO jgDAO;
     
-    public jugadoresControlador(jugadorDAO jgDAO){
-        this.jgDAO = jgDAO;
+    public jugadoresControlador(){
+//        this.jgDAO = jgDAO;
     }
     
-    public void addJugador(int id, String nombre, String cedula, String equipo,int numeroAmarillas, int numeroRojas, int numeroGoles){
-        Jugador jg = new Jugador(id, nombre, cedula, equipo, numeroAmarillas, numeroRojas, numeroGoles);
-        jgDAO.addJugador(jg);
+    public int addJugador(int id, String nombre, String cedula, String equipo,int numeroAmarillas, int numeroRojas, int numeroGoles){
+        
+        Jugador jg = new Jugador();
+        jg.setNombre(nombre);
+        jg.setCedula(cedula);
+        jg.setEquipo(equipo);
+        jg.setNumeroAmarillas(numeroAmarillas);
+        jg.setNumeroRojas(numeroRojas);
+        jg.setNumeroGoles(numeroGoles);   
+        jugadorDAO jgDAO1 = new jugadorDAO();
+        return jgDAO1.addJugador(jg);
+        
     }
     
     public int deleteJugador(int id){

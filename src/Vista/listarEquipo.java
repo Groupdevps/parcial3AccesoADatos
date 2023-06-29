@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import Controlador.equiposControl;
+import Modelos.Equipo;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Dan
  */
 public class listarEquipo extends javax.swing.JPanel {
+    List <Equipo> equipos;
 
     /**
      * Creates new form listarJugador
@@ -35,27 +39,20 @@ public class listarEquipo extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(700, 350));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("LISTAR EQUIPOS");
 
         listado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "nombre", "codigo", "puntos", "partidos ganados"
+                "id", "nombre", "pais", "codigo", "puntos", "partidos ganados ganadosll"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(listado);
 
         jButton1.setText("Listar");
@@ -94,7 +91,7 @@ public class listarEquipo extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,8 +99,14 @@ public class listarEquipo extends javax.swing.JPanel {
         // TODO add your handling code here:
         DefaultTableModel tabla = (DefaultTableModel)listado.getModel();
         tabla.setRowCount(0);
-        String[] fila = {"1", "test", "2", "32", "23", "2"};
-        tabla.addRow(fila);
+//        Object[] fila = {1, "test", "2", "32", "23", "2"};
+        
+        equiposControl equipoController = new equiposControl();   
+        equipos = equipoController.listEquipo();
+        for(Equipo eq:equipos){
+           Object[] fila = {eq.getId(), eq.getNombre(), eq.getPais(), eq.getCodigo(), eq.getPuntos(), eq.getPartidosGanados() };
+           tabla.addRow(fila);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
