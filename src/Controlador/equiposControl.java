@@ -20,7 +20,7 @@ public class equiposControl {
 //        this.eqDAO = new equiposDAO(); //= eqDAO1;
     }
     
-    public int addEquipoo(int id, String nombre, String pais, int codigo, int puntos, int partidosGanados){
+    public int addEquipo(int id, String nombre, String pais, int codigo, int puntos, int partidosGanados){
         int val = 1;
         try {
             equiposDAO eqDAO1 = new equiposDAO();            
