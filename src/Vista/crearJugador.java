@@ -142,7 +142,8 @@ public class crearJugador extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Jugador agregado !!");
                 this.nombre.setText("");
                 this.cedula.setText("");
-//                this.equipo.setText(1);
+                equipo.select("seleccionar");
+//                this.equipo.setSelectedItem("seleccionar");
 //                this.codigo.setText("");
             }else{
                 JOptionPane.showMessageDialog(null, "Error Creando Jugador!");
@@ -155,6 +156,7 @@ public class crearJugador extends javax.swing.JPanel {
     private void equipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_equipoItemStateChanged
         // TODO add your handling code here:
         String[] parts = evt.getItem().toString().split("-");
+        
         if (parts.length > 0) {            
             for(Equipo eq:equipos){
                 if (eq.getId()  == Integer.parseInt(parts[0])) {

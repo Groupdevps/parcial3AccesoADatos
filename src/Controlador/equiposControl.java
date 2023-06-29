@@ -31,6 +31,25 @@ public class equiposControl {
             eq.setPartidosGanados(partidosGanados);
             eq.setPuntos(puntos);
             val = eqDAO1.addEquipo(eq);
+            // Validar > 3 equipos para crear torneo
+            List <Equipo> equipos = eqDAO1.listEquipo();
+            
+            if (equipos.size() > 3) {
+                String equipo1 = "" , equipo2 = "";
+                
+                for(Equipo it:equipos){
+                    for(Equipo it2:equipos){
+                        if(!it.getNombre().equals(it2.getNombre())){
+                            equipo1 = it.getNombre();
+                            equipo2 = it2.getNombre();                       
+                            partidosControlador pt = new partidosControlador();
+                            pt.addPartido(0, equipo1, equipo2, 0, 0, 0, 0, 0, 0);                
+                            System.out.println(equipo1 + " vs " + equipo2);
+                        }
+                    }                    
+                }
+                System.out.println("Torneo creado");
+            }
         }catch (Exception error){
             System.out.println("Error controlador equipo "+ error);
         }

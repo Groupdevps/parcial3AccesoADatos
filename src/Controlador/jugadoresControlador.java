@@ -39,18 +39,20 @@ public class jugadoresControlador {
     }
     
     public List listJugador(){
+       jugadorDAO jgDAO1 = new jugadorDAO();
        List <String> jgs = new ArrayList();
-       List <Jugador> jugadores= jgDAO.listJugador();
-       for(Jugador jg:jugadores){
-           jgs.add(jg.toString());
-           System.out.println("---->"+jg.toString());
-       }
+       List <Jugador> jugadores= jgDAO1.listJugador();
+//       for(Jugador jg:jugadores){
+//           jgs.add(jg.toString());
+//           System.out.println("---->"+jg.toString());
+//       }
        
-       return jgs;
+       return jugadores;
     }
     
-    public int updateJugador(int id){
-       int filAfc= jgDAO.updateJugador(id);
+    public int updateJugador(Jugador player){
+       jugadorDAO jgDAO1 = new jugadorDAO();
+       int filAfc= jgDAO1.updateJugador(player);
        return filAfc;
     }
 }

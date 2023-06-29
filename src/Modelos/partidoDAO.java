@@ -93,12 +93,12 @@ public class partidoDAO {
             SessionFactory sessFact = NewHibernateUtil.getSessionFactory();
             Session  session = sessFact.openSession();	
             Transaction tx = session.beginTransaction();
-            pt = session.createQuery("from partido").list();      
+            pt = session.createQuery("from Partido").list();      
 //            System.out.println("LIST "+ eq);
             tx.commit();
             session.close();         
         }catch (Exception error){
-            System.out.println("Error listar equipo "+ error);
+            System.out.println("Error listar partido "+ error);
         }
         return pt;
     }

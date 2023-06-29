@@ -23,8 +23,7 @@ public class eliminarEquipo extends javax.swing.JPanel {
     public eliminarEquipo() {
         initComponents();
         
-        equipo.addItem("seleccionar");
-        equipo.addItem("test");
+        equipo.addItem("seleccionar");        
         this.cargarDatos();
     }
 
@@ -114,9 +113,10 @@ public class eliminarEquipo extends javax.swing.JPanel {
             equiposControl equipoController = new equiposControl();                        
             boolean code = equipoController.deleteEquipo(team);
             if (code){
-                JOptionPane.showMessageDialog(null, "Equipo Eliminado!!");              
-                this.equipo.select("Seleccionar");
-//                this.codigo.setText("");
+                JOptionPane.showMessageDialog(null, "Equipo Eliminado!!");                              
+                this.equipo.removeAll();
+                this.cargarDatos();
+                this.equipo.select("seleccionar");
             }else{
                 JOptionPane.showMessageDialog(null, "Error Eliminando equipo!");
             }
@@ -126,6 +126,7 @@ public class eliminarEquipo extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public void cargarDatos(){
+        equipo.addItem("seleccionar");
         equiposControl equipoController = new equiposControl();   
         equipos = equipoController.listEquipo();
         for(Equipo eq:equipos){

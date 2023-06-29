@@ -9,7 +9,10 @@ import Vista.menu;
 
 /**
  *
- * @author chaya
+ *  @author Lab redes, 
+ * Daniel Martinez Salas
+ * Fabian Raminez 
+ * Daniel Rodriguez
  */
 public class Parcial3rt {
 

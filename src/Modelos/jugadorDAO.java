@@ -46,18 +46,19 @@ public class jugadorDAO {
          
         SessionFactory sessFact = NewHibernateUtil.getSessionFactory();
         Session session = sessFact.openSession();	
-        List<Jugador> jg = session.createQuery("from jugador").list();      
+        List<Jugador> jg = session.createQuery("from Jugador").list();      
         session.close();
         return jg;
     }
     
-    public int updateJugador(int id){
+    public int updateJugador(Jugador player){
         int filasAfectadas = 0;
         SessionFactory sessFact = NewHibernateUtil.getSessionFactory();
         Session session = sessFact.openSession();      
         Transaction tx = session.beginTransaction();       
-	String query = "update FROM jugador SET nombre=?, cedula=?, equipo=?, numeroAmarillas=?, numeroRojas=?, numeroGoles=? WHERE id = ?";      
-        filasAfectadas = session.createSQLQuery(query).setInteger(0,id).executeUpdate();         
+//	String query = "update FROM jugador SET nombre=?, cedula=?, equipo=?, numeroAmarillas=?, numeroRojas=?, numeroGoles=? WHERE id = ?";      
+//        filasAfectadas = session.createSQLQuery(query).setInteger(0,id).executeUpdate();         
+        session.update(player);
         tx.commit();
         session.close();
         return filasAfectadas;

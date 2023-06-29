@@ -130,7 +130,7 @@ public class crearEquipo extends javax.swing.JPanel {
         // Crear equipo
         try {
             equipoController = new equiposControl();            
-            int code = this.equipoController.addEquipoo(0, this.nombre.getText(), this.pais.getText(), Integer.parseInt(this.codigo.getText()), 0, 0);
+            int code = this.equipoController.addEquipo(0, this.nombre.getText(), this.pais.getText(), Integer.parseInt(this.codigo.getText()), 0, 0);
             if (code == 0){
                 JOptionPane.showMessageDialog(null, "Equipo creado!!");
                 this.nombre.setText("");

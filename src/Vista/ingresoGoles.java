@@ -2,19 +2,42 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vistas;
+package Vista;
+
+import Controlador.equiposControl;
+import Controlador.jugadoresControlador;
+import Controlador.partidosControlador;
+import Modelos.Equipo;
+import Modelos.Jugador;
+import Modelos.Partido;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Dan
  */
 public class ingresoGoles extends javax.swing.JPanel {
-
+    List <Equipo> equipos;
+    List <Equipo> equiposSeleccionados;
+    List <Jugador> jugadores;
+    List <Jugador> jugadoresSeleccionados;
+    List <Partido> partidos;
+    Equipo team;
+    Jugador player;
+    Partido game;
     /**
      * Creates new form ingresoGoles
      */
     public ingresoGoles() {
         initComponents();
+        this.setSize(780, 350);
+        partidoSelect.addItem("seleccionar");
+        jugadorSelect.removeAllItems();
+        equipoSelect.removeAllItems();
+//        jugadorSelect.addItem("seleccionar");
+        equipoSelect.addItem("seleccionar");
+        this.cargarDatos();
     }
 
     /**
@@ -26,21 +49,270 @@ public class ingresoGoles extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        partidoSelect = new java.awt.Choice();
+        equipoSelect = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jugadorSelect = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        goles = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
         setPreferredSize(new java.awt.Dimension(700, 350));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("INGRESO GOLES");
+
+        jLabel2.setText("Partido");
+
+        partidoSelect.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                partidoSelectItemStateChanged(evt);
+            }
+        });
+
+        equipoSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        equipoSelect.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                equipoSelectItemStateChanged(evt);
+            }
+        });
+        equipoSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equipoSelectActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Jugador");
+
+        jugadorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jugadorSelect.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jugadorSelectItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("Equipo");
+
+        jLabel5.setText("Goles");
+
+        goles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                golesKeyTyped(evt);
+            }
+        });
+
+        jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(192, 192, 192)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(61, 61, 61)
+                                    .addComponent(partidoSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(70, 70, 70)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel3))
+                                    .addGap(60, 60, 60)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(equipoSelect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jugadorSelect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(goles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(partidoSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(equipoSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jugadorSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(goles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(34, 34, 34)
+                .addComponent(jButton1)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void golesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_golesKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros)
+        {
+            evt.consume();
+        }
+        if (this.goles.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_golesKeyTyped
 
+    private void partidoSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_partidoSelectItemStateChanged
+        // TODO add your handling code here:
+        // cargar equipos y seleccionar partido
+        String[] parts = evt.getItem().toString().split("-");
+        if (parts.length > 0) {            
+            for(Partido eq:partidos){
+                if (eq.getId()  == Integer.parseInt(parts[0])) {
+                    game = eq;                   
+                    equipoSelect.removeAllItems();
+                    equipoSelect.addItem("seleccionar");
+                    
+                    for(Equipo eq1:equipos){
+                        if (eq.getEquipo1().equals(eq1.getNombre()) || eq.getEquipo2().equals(eq1.getNombre())) {
+                            equipoSelect.addItem(eq1.getId() + "- " + eq1.getNombre());
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_partidoSelectItemStateChanged
+
+    private void equipoSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_equipoSelectItemStateChanged
+        // TODO add your handling code here:
+        // cargar jugadores de equipo
+        
+        try {
+            String[] parts = equipoSelect.getSelectedItem().toString().split("-");
+            
+            if (parts.length > 1) {            
+                System.out.println("preciono "+ parts[0]);
+                for(Equipo eq:equipos){                
+                    
+                    if (eq.getId() == Integer.parseInt(parts[0])) {
+                        team = eq;
+                        jugadorSelect.removeAllItems();
+                        for(Jugador eq1:jugadores){
+                            if (eq.getNombre().equals(eq1.getEquipo())) {
+                                jugadorSelect.addItem(eq1.getId()+"- "+eq1.getNombre());
+                            }
+                        }
+                    }
+
+                }
+            }
+        }catch(Exception error){
+            System.out.println("Error cargando jugadores " + error);
+        }
+        
+    }//GEN-LAST:event_equipoSelectItemStateChanged
+
+    private void equipoSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipoSelectActionPerformed
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_equipoSelectActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        partidosControlador partidoController = new partidosControlador();
+        jugadoresControlador jugadorController = new jugadoresControlador(); 
+        int num_gol = Integer.parseInt(this.goles.getText());
+        if(team.getNombre().equals(game.getEquipo1())){
+            int numero_goles = num_gol + game.getGolesEquipo1();
+            game.setGolesEquipo1(numero_goles);
+        }else{
+            int numero_goles = num_gol + game.getGolesEquipo2();
+            game.setGolesEquipo2(numero_goles);
+        }
+        player.setNumeroGoles(player.getNumeroGoles() + num_gol);
+        jugadorController.updateJugador(player);
+        int code = partidoController.updatePartido(game);
+        if (code == 0) {
+            JOptionPane.showMessageDialog(null, "Partido actualizado !!");            
+        }else{
+            JOptionPane.showMessageDialog(null, "Error actualizando partido !!");
+        }
+                
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jugadorSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jugadorSelectItemStateChanged
+        // TODO add your handling code here:
+         try {
+            String[] parts = jugadorSelect.getSelectedItem().toString().split("-");
+            if (parts.length > 1) {                            
+                for(Jugador eq:jugadores){                
+                    if (eq.getId() == Integer.parseInt(parts[0])) {
+                        player = eq;                                                
+                    }
+                }
+            }
+        }catch(Exception error){
+            System.out.println("Error seleccionand jugador " + error);
+        }
+    }//GEN-LAST:event_jugadorSelectItemStateChanged
+
+    
+    public void cargarDatos(){
+        equiposControl equipoController = new equiposControl();   
+        equipos = equipoController.listEquipo();
+//        for(Equipo eq:equipos){
+//            equipoSelect.addItem(eq.getId() + "- " + eq.getNombre());
+//        }
+        partidosControlador partidoController = new partidosControlador();
+        partidos = partidoController.listPartido();
+        for(Partido eq:partidos){            
+            partidoSelect.addItem(eq.getId() + "- " + eq.getEquipo2() + " VS " + eq.getEquipo1());
+        }
+        jugadoresControlador jugadoresController = new jugadoresControlador();
+        jugadores = jugadoresController.listJugador();
+        
+        
+
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> equipoSelect;
+    private javax.swing.JTextField goles;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JComboBox<String> jugadorSelect;
+    private java.awt.Choice partidoSelect;
     // End of variables declaration//GEN-END:variables
 }

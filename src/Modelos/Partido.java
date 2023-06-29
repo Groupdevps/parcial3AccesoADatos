@@ -22,17 +22,17 @@ public class Partido  implements java.io.Serializable {
     public Partido() {
     }
 
-    public Partido(int id, String equipo1, String equipo2, int golesEquipo1, int golesEquipo2, int tarjetasRojasEquipo1, int tarjetasRojasEquipo2, int tarjetasAmarillasEquipo1, int tarjetasAmarillasEquipo2) {
-       this.id = id;
-       this.equipo1 = equipo1;
-       this.equipo2 = equipo2;
-       this.golesEquipo1 = golesEquipo1;
-       this.golesEquipo2 = golesEquipo2;
-       this.tarjetasRojasEquipo1 = tarjetasRojasEquipo1;
-       this.tarjetasRojasEquipo2 = tarjetasRojasEquipo2;
-       this.tarjetasAmarillasEquipo1 = tarjetasAmarillasEquipo1;
-       this.tarjetasAmarillasEquipo2 = tarjetasAmarillasEquipo2;
-    }
+//    public Partido(int id, String equipo1, String equipo2, int golesEquipo1, int golesEquipo2, int tarjetasRojasEquipo1, int tarjetasRojasEquipo2, int tarjetasAmarillasEquipo1, int tarjetasAmarillasEquipo2) {
+//       this.id = id;
+//       this.equipo1 = equipo1;
+//       this.equipo2 = equipo2;
+//       this.golesEquipo1 = golesEquipo1;
+//       this.golesEquipo2 = golesEquipo2;
+//       this.tarjetasRojasEquipo1 = tarjetasRojasEquipo1;
+//       this.tarjetasRojasEquipo2 = tarjetasRojasEquipo2;
+//       this.tarjetasAmarillasEquipo1 = tarjetasAmarillasEquipo1;
+//       this.tarjetasAmarillasEquipo2 = tarjetasAmarillasEquipo2;
+//    }
    
     public int getId() {
         return this.id;
